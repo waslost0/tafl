@@ -1,0 +1,1 @@
+from automat_moore import AutomatMoore
