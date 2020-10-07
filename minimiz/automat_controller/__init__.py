@@ -1,1 +1,1 @@
-from automat_controller import AutomatController
+from automat_controller.AutomatController import AutomatController

@@ -1,3 +1,5 @@
+from IsMealyMoore import IsMealyMoore
+
 
 class MinimizationAutomat:
     def __init__(self, automat_name, input_size, state_count, automat_data, output_characters=''):
@@ -120,7 +122,6 @@ class MinimizationAutomat:
         group_edge = [[0, 0] for _ in range(0, self.state_count)]
         group_vector = [[] for _ in range(0, len(unique))]
 
-
         sum_ = 0
         index = 0
         for i in range(0, len(unique)):
@@ -158,7 +159,7 @@ class MinimizationAutomat:
 
             group_result_edge = group_edge if i == 0 else group_next_edge
     
-            if self.automat_name == 'mealy':
+            if self.automat_name == IsMealyMoore.mealy.value:
                 for j in range(0, self.state_count):
                     index_edge = j
                     unit = self.input_edge[index_edge][0]

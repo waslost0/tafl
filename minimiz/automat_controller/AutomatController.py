@@ -1,5 +1,7 @@
-from automat_mealy.AutomatMealy import AutomatMealy
-from automat_moore.AutomatMoore import AutomatMoore
+from automat_mealy import AutomatMealy
+from automat_moore import AutomatMoore
+from IsMealyMoore import IsMealyMoore
+
 import re
 
 
@@ -20,10 +22,8 @@ class AutomatController:
             return
         self.get_automat_config(input_data)
 
-        if self.automat_info['name_automat'] == 'moore':
-            output_character = []
-            moore_data = []
-            output_character = self.fill_output_state(self.automat_info['state_count'], input_data)
+        if self.automat_info['name_automat'] == IsMealyMoore.moore.value:
+            output_character = self.fill_output_state(input_data)
             moore_data = self.fill_data_moore(input_data)
 
             automat_moore = AutomatMoore(
@@ -38,7 +38,7 @@ class AutomatController:
             automat_moore.print_info()
             automat_moore.graph_view()
 
-        elif self.automat_info['name_automat'] == 'mealy':
+        elif self.automat_info['name_automat'] == IsMealyMoore.mealy.value:
             input_edges = self.fill_data_mealy(input_data)
             automat_mealy = AutomatMealy(
                 self.automat_info['name_automat'],
@@ -78,10 +78,9 @@ class AutomatController:
         else:
             return input_data
 
-    def fill_output_state(self, state_count, input_data):
-        output_characters = []
+    def fill_output_state(self, input_data):
         try:
-            output_characters = [int(value) for value in input_data.pop(0).replace('y', '').split()]
+            output_characters = [int(item) for item in re.findall(r'\d+', input_data.pop(0))]
         except (IndexError, ValueError) as error:
             raise error
         else:

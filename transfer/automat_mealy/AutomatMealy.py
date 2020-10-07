@@ -1,6 +1,6 @@
 import os
 import itertools
-DOT_PATH = 'C:/Users/Zver/Desktop/TAaFL-master/lw1/TransformationAutomat/TransformationAutomat/Graphviz/bin/'
+DOT_PATH = ''
 
 
 class AutomatMealy:

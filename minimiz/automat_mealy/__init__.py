@@ -1,1 +1,1 @@
-from automat_mealy import AutomatMealy
+from automat_mealy.AutomatMealy import AutomatMealy

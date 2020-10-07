@@ -1,7 +1,5 @@
-from minimization_automat.minimization import MinimizationAutomat
+from minimization_automat import MinimizationAutomat
 from visualization import GraphView
-import os
-DOT_PATH = 'C:/Users/Zver/Desktop/TAaFL-master/lw1/TransformationAutomat/TransformationAutomat/Graphviz/bin/'
 
 
 class AutomatMoore:

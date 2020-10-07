@@ -1,5 +1,5 @@
-from automat_mealy.AutomatMealy import AutomatMealy
-from automat_moore.AutomatMoore import AutomatMoore
+from automat_mealy import AutomatMealy
+from automat_moore import AutomatMoore
 import re
 
 
@@ -22,10 +22,8 @@ class AutomatController:
 
         self.get_automat_config(input_data)
 
-        if self.automat_info['name_automat'] == 'moore':
-            output_character = []
-            moore_data = []
-            output_character = self.fill_output_state(self.automat_info['state_count'], input_data)
+        if self.automat_info['name_automat'] == '2':
+            output_character = self.fill_output_state(input_data)
             moore_data = self.fill_data_moore(input_data)
 
             automat_moore = AutomatMoore(
@@ -39,7 +37,7 @@ class AutomatController:
             automat_moore.graph_view()
             automat_moore.configure_graph_file()
             # automat_moore.convert_graphfile_to_png(automat_moore.graph_file_name)
-        elif self.automat_info['name_automat'] == 'mealy':
+        elif self.automat_info['name_automat'] == '1':
             input_edges = self.fill_data_mealy(input_data)
 
             automat_mealy = AutomatMealy(
@@ -82,16 +80,15 @@ class AutomatController:
         else:
             return input_data
 
-    def fill_output_state(self, state_count, input_data):
-        output_characters = []
+    def fill_output_state(self, input_data):
         try:
-            output_characters = [int(value) for value in input_data.pop(0).replace('y', '').split()]
+            output_characters = [int(item) for item in re.findall(r'\d+', input_data.pop(0))]
         except (IndexError, ValueError) as error:
             raise error
         else:
             return output_characters
 
-    def get_automat_config(self, input_data) -> list:
+    def get_automat_config(self, input_data):
         try:
             for i, key in enumerate(self.automat_info):
                 self.automat_info[key] = input_data.pop(0)

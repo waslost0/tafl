@@ -1,8 +1,8 @@
 import sys
-from automat_controller.AutomatController import AutomatController
+from automat_controller import AutomatController
 
 
-ERROR_NOT_ENOUGH_ARGUMENTS = 'The number of arguments does not match the task condition\nInput should look: main.py ' \
+ERROR_NOT_ENOUGH_ARGUMENTS = 'Invalid arguments input\nInput should look: main.py ' \
                              '<input file> <output file>\n '
 
 

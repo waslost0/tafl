@@ -1,5 +1,8 @@
 import os
-DOT_PATH = 'C:/Users/Zver/Desktop/TAaFL-master/lw1/TransformationAutomat/TransformationAutomat/Graphviz/bin/'
+from IsMealyMoore import IsMealyMoore
+
+DOT_PATH = ''
+
 
 class GraphView:
     def __init__(self, output_data, size, automat_name):
@@ -19,7 +22,7 @@ class GraphView:
                 x += 1
                 index = 0
 
-            if self.automat_name == 'mealy':
+            if self.automat_name == IsMealyMoore.mealy.value:
                 self.weights.append(f'x{str(x)}y{str(line[1])}')
                 self.edge.append([index, line[0]])
             else:

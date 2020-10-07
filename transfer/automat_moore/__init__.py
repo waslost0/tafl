@@ -1,1 +1,1 @@
-from automat_moore import AutomatMoore
+from automat_moore.AutomatMoore import AutomatMoore
