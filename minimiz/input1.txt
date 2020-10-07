@@ -1,7 +1,7 @@
-2
+3
 2
 8
-moore
-y1 y0 y0 y1 y1 y0 y0 y0
-q7 q2 q7 q7 q7 q6 q7 q7
-q1 q7 q3 q5 q5 q7 q4 q7
+mealy
+s3y0 s4y1 s2y1 s4y0 s6y0 s0y0 s4y0 s2y1
+s1y1 s0y0 s4y0 s7y1 s1y1 s2y1 s2y1 s4y0
+s4y0 s3y1 s3y1 s3y1 s0y0 s3y1 s6y1 s5y1

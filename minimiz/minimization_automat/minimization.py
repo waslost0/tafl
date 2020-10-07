@@ -23,9 +23,10 @@ class MinimizationAutomat:
         return output_state_moore
 
     def minimization_mealy(self):
-        group_edge = self.getting_group(self.input_edge)
+        group_vector = self.getting_group(self.input_edge)
+        group_edge = self.getting_group_edge(group_vector)
+        group_previous_edge = self.getting_group_previous_edge(group_edge)
 
-        group_previous_edge = self.getting_group_edge(group_edge)
         output_state_mealy = self.fillout_mealy(group_previous_edge)
         return output_state_mealy
 
@@ -37,7 +38,7 @@ class MinimizationAutomat:
 
     def fillout_mealy(self, group_previous_edge):
         size = len(self.group_previous)
-        self.output_state_moore = [[None] for _ in range(0, size * self.input_size)]
+        self.output_state_moore = [[None, None] for _ in range(0, size * self.input_size)]
 
         for i in range(0, size):
             index_insert = i
@@ -54,7 +55,6 @@ class MinimizationAutomat:
                     index_insert += size
 
         return self.output_state_moore
-
 
     def fillout_moore(self, group_previous_edge):
         size = len(self.group_previous)
@@ -88,13 +88,15 @@ class MinimizationAutomat:
 
         return group_edge
 
-
     def getting_group(self, input_edge):
-        output = [[None, None] for _ in range(0, self.state_count)]
+        output = [None] * self.state_count
+        for i, item in enumerate(output):
+            output[i] = [None] * self.input_size
+
         for i in range(0, self.state_count):
             temporary = []
             index = i
-            for j in range(0, len(output[i])):
+            for j in range(0, self.input_size):
                 temporary.append(input_edge[index][1])
                 index += self.state_count
             output[i] = temporary
@@ -142,7 +144,6 @@ class MinimizationAutomat:
 
         return group_vector, group_edge
 
-
     def getting_group_previous_edge(self, group_edge):
         group_previous_edge = []
         self.output_state = [[0, 0] for _ in range(0, self.state_count * self.input_size)]
@@ -157,7 +158,18 @@ class MinimizationAutomat:
             group_result_edge = group_edge if i == 0 else group_next_edge
     
             if self.automat_name == 'mealy':
-                pass
+                for j in range(0, self.state_count):
+                    index_edge = j
+                    unit = self.input_edge[index_edge][0]
+                    for k in range(0, self.input_size):
+                        it = [item for item in group_result_edge if item[1] == unit]
+                        if it:
+                            self.output_state[index_edge] = [0, it[0][0]]
+
+                        if k < self.input_size - 1:
+                            index_edge += 1
+                            unit = self.input_edge[index_edge][0]
+
             else:
                 for j in range(0, len(self.output_characters)):
                     index_column = 0
@@ -192,5 +204,19 @@ class MinimizationAutomat:
     def getting_group_edge(self, group):
         unique = []
 
+        for item in group:
+            print(item)
+            if item not in unique:
+                unique.append(item)
+        unique = sorted(unique)
 
+        group_edge = [[None, None] for _ in range(0, self.state_count)]
+        self.group_vector = [[] * i for i in range(0, len(unique))]
 
+        for i, unicum in enumerate(unique):
+            for j, out_char in enumerate(group):
+                if unicum == out_char:
+                    group_edge[j] = [i, j]
+                    self.group_vector[i].append(j)
+
+        return group_edge

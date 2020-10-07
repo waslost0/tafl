@@ -2,7 +2,7 @@ import sys
 from automat_controller.AutomatController import AutomatController
 
 
-ERROR_NOT_ENOUGH_ARGUMENTS = 'The number of arguments does not match the task condition\nInput should look: TransformationAutomat.exe <input file> <output file>\n'
+ERROR_NOT_ENOUGH_ARGUMENTS = 'The number of arguments does not match the task condition\nInput should look: main.py <input file> <output file>\n'
 
 
 def main():
@@ -15,6 +15,7 @@ def main():
         automat_controller.process_command()
     except Exception as error:
         raise error
+
 
 if __name__ == "__main__":
     main()
