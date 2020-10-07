@@ -1,0 +1,1 @@
+from minimization_automat import minimization
