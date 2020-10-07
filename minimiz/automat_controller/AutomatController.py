@@ -1,6 +1,5 @@
 from automat_mealy.AutomatMealy import AutomatMealy
 from automat_moore.AutomatMoore import AutomatMoore
-
 import re
 
 
@@ -19,9 +18,7 @@ class AutomatController:
         input_data = self.read_data_from_file()
         if not input_data:
             return
-
         self.get_automat_config(input_data)
-        print(self.automat_info)
 
         if self.automat_info['name_automat'] == 'moore':
             output_character = []
@@ -56,9 +53,9 @@ class AutomatController:
 
     def fill_data_mealy(self, input_data):
         input_edge = []
-        imput_string = ' '.join(line for line in input_data)
+        input_string = ' '.join(line for line in input_data)
 
-        for line in imput_string.split():
+        for line in input_string.split():
             input_edge.append(list(int(item) for item in re.findall(r'\d+', line)))
         return input_edge
 

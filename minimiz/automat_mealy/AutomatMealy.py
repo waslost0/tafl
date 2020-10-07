@@ -35,7 +35,6 @@ class AutomatMealy:
         )
         self.output_state_mealy = minimization.minimization_mealy()
         self.output_state_size = len(minimization.group_previous)
-        a = 0
 
     def print_info(self):
         line = ''

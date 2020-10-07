@@ -197,16 +197,12 @@ class MinimizationAutomat:
             else:
                 self.group_previous = group_next_vector
 
-            a = 1
-            print()
         return group_previous_edge
-
 
     def getting_group_edge(self, group):
         unique = []
 
         for item in group:
-            print(item)
             if item not in unique:
                 unique.append(item)
         unique = sorted(unique)

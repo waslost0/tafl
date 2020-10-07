@@ -2,16 +2,17 @@ import sys
 from automat_controller.AutomatController import AutomatController
 
 
-ERROR_NOT_ENOUGH_ARGUMENTS = 'The number of arguments does not match the task condition\nInput should look: main.py <input file> <output file>\n'
+ERROR_NOT_ENOUGH_ARGUMENTS = 'The number of arguments does not match the task condition\nInput should look: main.py ' \
+                             '<input file> <output file>\n '
 
 
 def main():
     try:
-        # if len(sys.argv) != 3:
-        #     print(ERROR_NOT_ENOUGH_ARGUMENTS)
-        #     return
+        if len(sys.argv) != 3:
+            print(ERROR_NOT_ENOUGH_ARGUMENTS)
+            return
 
-        automat_controller = AutomatController('input1.txt', 'o.txt')
+        automat_controller = AutomatController(sys.argv[1], sys.argv[2])
         automat_controller.process_command()
     except Exception as error:
         raise error
