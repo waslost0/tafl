@@ -51,7 +51,8 @@ class AutomatController:
                 input_edges
                 )
             automat_mealy.minimization_automat()
-
+            automat_mealy.print_info()
+            automat_mealy.graph_view()
 
 
     def fill_data_mealy(self, input_data):

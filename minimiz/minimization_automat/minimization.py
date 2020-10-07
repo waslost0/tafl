@@ -38,27 +38,28 @@ class MinimizationAutomat:
 
     def fillout_mealy(self, group_previous_edge):
         size = len(self.group_previous)
-        self.output_state_moore = [[None, None] for _ in range(0, size * self.input_size)]
+        output_state_mealy = [[None, None] for _ in range(0, size * self.input_size)]
 
         for i in range(0, size):
             index_insert = i
-            index_row = 0
-            index_column = self.group_previous[i][0]
-            self.output_character_moore.append(self.output_characters[index_column])
+            index = self.group_previous[i][0]
+
             for j in range(0, self.input_size):
-                unit = self.input_edge[index_row][index_column]
+                input_find_edge = self.input_edge[index]
+                unit = input_find_edge[0]
+
                 it = [item for item in group_previous_edge if item[1] == unit]
                 if it:
-                    self.output_state_moore[index_insert] = it[0][0]
+                    output_state_mealy[index_insert] = [it[0][0], input_find_edge[1]]
                 if j < self.input_size - 1:
-                    index_row += 1
                     index_insert += size
+                    index += self.state_count
 
-        return self.output_state_moore
+        return output_state_mealy
 
     def fillout_moore(self, group_previous_edge):
         size = len(self.group_previous)
-        self.output_state_moore = [[None] for _ in range(0, size * self.input_size)]
+        output_state_moore = [[None] for _ in range(0, size * self.input_size)]
 
         for i in range(0, size):
             index_insert = i
@@ -69,12 +70,12 @@ class MinimizationAutomat:
                 unit = self.input_edge[index_row][index_column]
                 it = [item for item in group_previous_edge if item[1] == unit]
                 if it:
-                    self.output_state_moore[index_insert] = it[0][0]
+                    output_state_moore[index_insert] = it[0][0]
                 if j < self.input_size - 1:
                     index_row += 1
                     index_insert += size
 
-        return self.output_state_moore
+        return output_state_moore
 
     def getting_group_moore(self):
         unique = list(set(self.output_characters))
@@ -167,7 +168,7 @@ class MinimizationAutomat:
                             self.output_state[index_edge] = [0, it[0][0]]
 
                         if k < self.input_size - 1:
-                            index_edge += 1
+                            index_edge += self.state_count
                             unit = self.input_edge[index_edge][0]
 
             else:
