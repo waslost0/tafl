@@ -45,7 +45,7 @@ class MinimizationAutomat:
             index_column = self.group_previous[i][0]
             self.output_character_moore.append(self.output_characters[index_column])
             for j in range(0, self.input_size):
-                unit = self.automat_data[index_row][index_column]
+                unit = self.input_edge[index_row][index_column]
                 it = [item for item in group_previous_edge if item[1] == unit]
                 if it:
                     self.output_state_moore[index_insert] = it[0][0]
@@ -66,7 +66,7 @@ class MinimizationAutomat:
             index_column = self.group_previous[i][0]
             self.output_character_moore.append(self.output_characters[index_column])
             for j in range(0, self.input_size):
-                unit = self.automat_data[index_row][index_column]
+                unit = self.input_edge[index_row][index_column]
                 it = [item for item in group_previous_edge if item[1] == unit]
                 if it:
                     self.output_state_moore[index_insert] = it[0][0]
@@ -163,7 +163,7 @@ class MinimizationAutomat:
                     index_column = 0
                     index_row = 0
                     index_column = j
-                    unit = self.automat_data[index_row][index_column]
+                    unit = self.input_edge[index_row][index_column]
                     for k in range(0, self.input_size):
                         it = [item for item in group_result_edge if item[1] == unit]
                         #if it[0] != group_result_edge[-1]:
@@ -172,7 +172,7 @@ class MinimizationAutomat:
 
                         if k < self.input_size - 1:
                             index_row += 1
-                            unit = self.automat_data[index_row][j]
+                            unit = self.input_edge[index_row][j]
                             index_column += self.state_count
 
             if group_previous_edge == group_result_edge:

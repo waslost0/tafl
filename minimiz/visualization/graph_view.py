@@ -1,7 +1,5 @@
 import os
-
 DOT_PATH = 'C:/Users/Zver/Desktop/TAaFL-master/lw1/TransformationAutomat/TransformationAutomat/Graphviz/bin/'
-
 
 class GraphView:
     def __init__(self, output_data, size, automat_name):
@@ -14,9 +12,6 @@ class GraphView:
         self.weights = []
 
     def graph_view(self):
-        weights = []
-        edge = []
-
         x = 0
         index = 0
         for i, line in enumerate(self.output_data):

@@ -14,7 +14,7 @@ def main():
         automat_controller = AutomatController('input1.txt', 'o.txt')
         automat_controller.process_command()
     except Exception as error:
-        raise(error)
+        raise error
 
 if __name__ == "__main__":
     main()
