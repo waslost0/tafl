@@ -38,7 +38,7 @@ class AutomatController:
             automat_moore.write_result_to_file()
             automat_moore.graph_view()
             automat_moore.configure_graph_file()
-            automat_moore.convert_graphfile_to_png(automat_moore.graph_file_name)
+            # automat_moore.convert_graphfile_to_png(automat_moore.graph_file_name)
         elif self.automat_info['name_automat'] == 'mealy':
             input_edges = self.fill_data_mealy(input_data)
 
@@ -52,7 +52,7 @@ class AutomatController:
             automat_mealy.write_result_to_file()
             automat_mealy.graph_view()
             automat_mealy.configure_graph_file()
-            automat_mealy.convert_graphfile_to_png(automat_mealy.graph_file_name)
+            # automat_mealy.convert_graphfile_to_png(automat_mealy.graph_file_name)
 
     def fill_data_mealy(self, input_data):
         input_edge = []
