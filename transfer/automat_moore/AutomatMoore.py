@@ -1,4 +1,4 @@
-from base_logger import logger
+
 import os
 DOT_PATH = 'C:/Users/Zver/Desktop/TAaFL-master/lw1/TransformationAutomat/TransformationAutomat/Graphviz/bin/'
 
@@ -39,10 +39,6 @@ class AutomatMoore:
             self.edge_weight.append(f'x{str(x)}y{str(line[1])}')
             self.vertex_index.append([index, line[0]])
             index += 1
-
-        logger.info(self.m_transition)
-        logger.info(self.vertex_index)
-        logger.info(self.edge_weight)
 
     def transfer_automat(self):
         for i, _ in enumerate(self.moore_data):

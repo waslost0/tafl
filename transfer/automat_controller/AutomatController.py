@@ -1,7 +1,5 @@
 from automat_mealy.AutomatMealy import AutomatMealy
 from automat_moore.AutomatMoore import AutomatMoore
-
-from base_logger import logger
 import re
 
 
@@ -23,15 +21,12 @@ class AutomatController:
             return
 
         self.get_automat_config(input_data)
-        logger.debug(self.automat_info)
 
         if self.automat_info['name_automat'] == 'moore':
             output_character = []
             moore_data = []
             output_character = self.fill_output_state(self.automat_info['state_count'], input_data)
             moore_data = self.fill_data_moore(input_data)
-            logger.debug(moore_data)
-            logger.debug(output_character)
 
             automat_moore = AutomatMoore(
                 self.file_output,
@@ -46,7 +41,6 @@ class AutomatController:
             automat_moore.convert_graphfile_to_png(automat_moore.graph_file_name)
         elif self.automat_info['name_automat'] == 'mealy':
             input_edges = self.fill_data_mealy(input_data)
-            print(input_edges)
 
             automat_mealy = AutomatMealy(
                 self.file_output,
@@ -72,9 +66,9 @@ class AutomatController:
         moore_data = []
         try:
             for line in input_data:
-                moore_data.append([int(value) for value in line.replace('q', '').split()])
+                #moore_data.append([int(value) for value in line.replace('q', '').split()])
+                moore_data.append(list(int(item) for item in re.findall(r'\d+', line)))
         except ValueError as error:
-            logger.error(error)
             raise error
         else:
             return moore_data
@@ -84,7 +78,6 @@ class AutomatController:
             with open(self.file_input) as input_file:
                 input_data = input_file.read().splitlines()
         except FileNotFoundError as error:
-            logger.error(error)
             raise error
         else:
             return input_data
@@ -94,7 +87,6 @@ class AutomatController:
         try:
             output_characters = [int(value) for value in input_data.pop(0).replace('y', '').split()]
         except (IndexError, ValueError) as error:
-            logger.error(error)
             raise error
         else:
             return output_characters
@@ -104,5 +96,4 @@ class AutomatController:
             for i, key in enumerate(self.automat_info):
                 self.automat_info[key] = input_data.pop(0)
         except IndexError as error:
-            logger.error(error)
             raise error

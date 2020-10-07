@@ -1,4 +1,3 @@
-from base_logger import logger
 import os
 import itertools
 DOT_PATH = 'C:/Users/Zver/Desktop/TAaFL-master/lw1/TransformationAutomat/TransformationAutomat/Graphviz/bin/'
@@ -45,9 +44,9 @@ class AutomatMealy:
     def transfer_automat(self):
         sorted_edges = sorted(self.input_edge)
         self.unique_edges = list(sorted_edges for sorted_edges, _ in itertools.groupby(sorted_edges))
-        self.output_state = [None] * (len(self.unique_edges) * self.input_size)
+        self.output_state = [0] * (len(self.unique_edges) * self.input_size)
 
-        for i, _ in enumerate(self.unique_edges):
+        for i in range(0, len(self.unique_edges)):
             index_edge = i
             search_index = self.unique_edges[i][0]
             for j in range(0, self.input_size):

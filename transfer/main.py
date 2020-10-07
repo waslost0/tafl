@@ -7,12 +7,11 @@ ERROR_NOT_ENOUGH_ARGUMENTS = 'The number of arguments does not match the task co
 
 def main():
     try:
-        if len(sys.argv) != 3:
-            print(ERROR_NOT_ENOUGH_ARGUMENTS)
-            return
+        # if len(sys.argv) != 3:
+        #     print(ERROR_NOT_ENOUGH_ARGUMENTS)
+        #     return
 
-        automat_controller = AutomatController(sys.argv[1], sys.argv[2])
-        print(automat_controller)
+        automat_controller = AutomatController('input1.txt', 'o.txt')
         automat_controller.process_command()
     except Exception as error:
         raise(error)
