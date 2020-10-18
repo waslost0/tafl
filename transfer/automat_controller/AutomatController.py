@@ -8,11 +8,11 @@ class AutomatController:
         self.file_input = file_input
         self.file_output = file_output
         self.automat_info = {
-                'input_size': '',
-                'output_size': '',
-                'state_count': '',
-                'name_automat': ''
-            }
+            'name_automat': '',
+            'input_size': '',
+            'output_size': '',
+            'state_count': '',
+        }
 
     def process_command(self):
         input_data = self.read_data_from_file()
