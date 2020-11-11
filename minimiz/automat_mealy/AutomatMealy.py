@@ -16,14 +16,13 @@ class AutomatMealy:
         self.edge_weight = []
 
         self.output_state_mealy = []
-        self.output_character_mealy= []
-        self.output_state_size = []
+        self.output_character_mealy = []
+        self.output_state_size = 0
 
     def graph_view(self):
         graph_view = GraphView(self.output_state_mealy, self.output_state_size, self.automat_name)
         graph_view.graph_view()
         graph_view.configure_graph_file()
-        #graph_view.convert_graphfile_to_png()
 
     def minimization_automat(self):
         minimization = MinimizationAutomat(
@@ -37,9 +36,10 @@ class AutomatMealy:
 
     def print_info(self):
         line = ''
+
         with open(f'{self.output_file_name}', 'w') as file:
             for i, item in enumerate(self.output_state_mealy):
                 if i % self.output_state_size == 0 and i != 0:
                     line += '\n'
-                line += 's' + str(item[0]) + 'y'+ str(item[1]) + ' '
+                line += 'q' + str(item[0]) + '/' + str(item[1]) + ' '
             file.write(line)

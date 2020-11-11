@@ -27,6 +27,7 @@ class AutomatMoore:
         # graph_view.convert_graphfile_to_png()
 
     def minimization_automat(self):
+
         minimization = MinimizationAutomat(
             self.automat_name,
             self.input_size,

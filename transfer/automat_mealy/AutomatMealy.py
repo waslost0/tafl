@@ -58,7 +58,12 @@ class AutomatMealy:
 
     def write_result_to_file(self):
         line = ''
+
         with open(f'{self.output_file_name}', 'w') as file:
+            for i in range(1, len(self.unique_edges) + 1):
+                line += 'y' + str(i) + ' '
+            line += '\n'
+
             for i, item in enumerate(self.output_state):
                 if i % len(self.unique_edges) == 0 and i != 0:
                     line += '\n'

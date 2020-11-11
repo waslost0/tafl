@@ -59,14 +59,23 @@ class AutomatController:
             input_edge.append(list(int(item) for item in re.findall(r'\d+', line)))
         return input_edge
 
+    def parse_string_for_int(self, input_data):
+        temp_list = []
+        for line in input_data:
+            temp_list.append(list(int(item) for item in re.findall(r'\d+', line)))
+        return temp_list
+
     def fill_data_moore(self, input_data):
-        moore_data = []
+        moore_data = [[0] * int(self.automat_info['state_count']) for _ in range(0,  int(self.automat_info['input_size']))]
+        input_values = self.parse_string_for_int(input_data)
         try:
-            for line in input_data:
-                moore_data.append(list(int(item) for item in re.findall(r'\d+', line)))
+            for i in range(0, len(moore_data)):
+                moore_data[i] = input_values.pop(0)
+        except IndexError:
+            pass
         except ValueError as error:
             raise error
-        else:
+        finally:
             return moore_data
 
     def read_data_from_file(self) -> list:

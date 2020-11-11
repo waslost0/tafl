@@ -36,7 +36,6 @@ class AutomatController:
             automat_moore.write_result_to_file()
             automat_moore.graph_view()
             automat_moore.configure_graph_file()
-            # automat_moore.convert_graphfile_to_png(automat_moore.graph_file_name)
         elif self.automat_info['name_automat'] == '1':
             input_edges = self.fill_data_mealy(input_data)
 
@@ -50,13 +49,12 @@ class AutomatController:
             automat_mealy.write_result_to_file()
             automat_mealy.graph_view()
             automat_mealy.configure_graph_file()
-            # automat_mealy.convert_graphfile_to_png(automat_mealy.graph_file_name)
 
     def fill_data_mealy(self, input_data):
         input_edge = []
-        imput_string = ' '.join(line for line in input_data)
+        input_string = ' '.join(line for line in input_data)
 
-        for line in imput_string.split():
+        for line in input_string.split():
             input_edge.append(list(int(item) for item in re.findall(r'\d+', line)))
         return input_edge
 
@@ -64,7 +62,6 @@ class AutomatController:
         moore_data = []
         try:
             for line in input_data:
-                #moore_data.append([int(value) for value in line.replace('q', '').split()])
                 moore_data.append(list(int(item) for item in re.findall(r'\d+', line)))
         except ValueError as error:
             raise error
